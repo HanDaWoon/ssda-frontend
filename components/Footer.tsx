@@ -12,22 +12,7 @@ const Footer = () => {
       </span>
       <ul className="mt-3 flex flex-wrap items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
         <li>
-          <Link href="#" className="mr-4 hover:underline md:mr-6 ">
-            About
-          </Link>
-        </li>
-        <li>
-          <Link href="#" className="mr-4 hover:underline md:mr-6">
-            Privacy Policy
-          </Link>
-        </li>
-        <li>
-          <Link href="#" className="mr-4 hover:underline md:mr-6">
-            Licensing
-          </Link>
-        </li>
-        <li>
-          <Link href="#" className="hover:underline">
+          <Link href="info" className="hover:underline">
             Contact
           </Link>
         </li>

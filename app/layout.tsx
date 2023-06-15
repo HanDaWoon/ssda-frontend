@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <Providers>
           <Navbar />
-          <Suspense fallback={<Loading />}>{children}</Suspense>;
+          <Suspense fallback={<Loading />}>{children}</Suspense>
           <Footer />
         </Providers>
       </body>
