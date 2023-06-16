@@ -61,7 +61,7 @@ export default function Post() {
       },
       body: JSON.stringify({
         fontOwner: "MSY",
-        fontName: "MSY",
+        fontName: post?.fontName,
         text: text,
       }),
     })
