@@ -2,7 +2,9 @@
 // import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+
+const API = process.env.SSDA_API ?? "https://api.ssda.dawoony.com";
 
 export interface IDetailInfo {
   id: number;
@@ -14,42 +16,45 @@ export interface IDetailInfo {
 const Board = () => {
   const { data: session } = useSession();
   const [board, setBoard] = useState<IDetailInfo[]>([]);
- 
+
   const getBoard = async () => {
-      const response = await fetch(`http://127.0.0.1:8080/api/board`, {
-        headers: {
-          Authorization: `Bearer ${session?.user?.accessToken}`,
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET",
-          "Access-Control-Allow-Headers": "*",
-        },
-      });
-      console.log("response",response)
-      
-      if (response.ok) {
-        const data = await response.json();
-        setBoard(data);
-      }
+    const response = await fetch(`${API}/api/board`, {
+      headers: {
+        Authorization: `Bearer ${session?.user?.accessToken}`,
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+        "Access-Control-Allow-Headers": "*",
+      },
+    });
+    console.log("response", response);
+
+    if (response.ok) {
+      const data = await response.json();
+      setBoard(data);
+    }
   };
 
   useEffect(() => {
     if (session?.user.accessToken !== null) getBoard();
   }, [session]);
-  
+
   return (
     <section className="min-h-3/4">
       <div className="flex h-full w-full flex-col justify-center px-4 py-5 md:container md:mx-auto">
         {session?.user ? (
-        <div style={{ display: "flex" }}>
-          <Link
-            href="/board/write"
-            className="mb-2 rounded-lg bg-yellow-400 px-5 py-2.5 text-sm font-medium text-white hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 dark:focus:ring-yellow-900"
-            //style={{ marginLeft: '30px' }}
-          >
-            쓰기
-          </Link>
-        </div>):(<></>)}
+          <div style={{ display: "flex" }}>
+            <Link
+              href="/board/write"
+              className="mb-2 rounded-lg bg-yellow-400 px-5 py-2.5 text-sm font-medium text-white hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 dark:focus:ring-yellow-900"
+              //style={{ marginLeft: '30px' }}
+            >
+              쓰기
+            </Link>
+          </div>
+        ) : (
+          <></>
+        )}
         <div className="grid grid-flow-row grid-cols-4 justify-items-center gap-6">
           {board.map(item => (
             <div
