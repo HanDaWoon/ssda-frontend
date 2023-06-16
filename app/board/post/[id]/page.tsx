@@ -84,7 +84,7 @@ export default function Post() {
 
   const handleCopyClipBoard = async () => {
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(svg);
       alert("클립보드에 링크가 복사되었습니다.");
     } catch (e) {
       alert("복사에 실패하였습니다");
@@ -112,7 +112,7 @@ export default function Post() {
           </div>
         </div>
         <div className="relative mb-6">
-          <Image width={500} height={500} src={`/${post?.imageFile}`} alt="Font Image" />
+          {/* <Image width={500} height={500} src={`/${post?.imageFile}`} alt="Font Image" /> */}
           {svg && (
             <div
               className="absolute left-0 top-0 flex h-full w-full items-center justify-center"

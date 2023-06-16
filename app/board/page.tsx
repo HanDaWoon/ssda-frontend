@@ -27,7 +27,6 @@ const Board = () => {
         "Access-Control-Allow-Headers": "*",
       },
     });
-    console.log("response", response);
 
     if (response.ok) {
       const data = await response.json();
@@ -56,31 +55,32 @@ const Board = () => {
           <></>
         )}
         <div className="grid grid-flow-row grid-cols-4 justify-items-center gap-6">
-          {board.map(item => (
-            <div
-              key={item.id}
-              className="!z-5 shadow-3xl shadow-shadow-500 3xl:p-![18px] undefined relative flex w-full max-w-[300px] flex-col rounded-[20px] bg-white bg-clip-border !p-4"
-            >
-              <Link href={`/board/post/${item.id}`}>
-                <div className="h-full w-full">
-                  <div className="relative w-full">
-                    {/* <Image
+          {board.length > 0 &&
+            board.map(item => (
+              <div
+                key={item.id}
+                className="!z-5 shadow-3xl shadow-shadow-500 3xl:p-![18px] undefined relative flex w-full max-w-[300px] flex-col rounded-[20px] bg-white bg-clip-border !p-4"
+              >
+                <Link href={`/board/post/${item.id}`}>
+                  <div className="h-full w-full">
+                    <div className="relative w-full">
+                      {/* <Image
                     width={300}
                     height={300}
                     src="https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/Nft3.3b3e6a4b3ada7618de6c.png"
                     className="3xl:h-full 3xl:w-full mb-3 h-full w-full rounded-xl"
                     alt=""
                   /> */}
-                  </div>
-                  <div className="mb-3 flex items-center justify-between px-1 md:items-start">
-                    <div className="mb-2">
-                      <p className="text-navy-700 text-lg font-bold">{item.title}</p>
-                      <p className="mt-1 text-sm font-medium text-gray-600 md:mt-2">
-                        By {item.fontGenerator}
-                      </p>
                     </div>
-                  </div>
-                  {/* <div className="flex items-center justify-between md:items-center lg:justify-between ">
+                    <div className="mb-3 flex items-center justify-between px-1 md:items-start">
+                      <div className="mb-2">
+                        <p className="text-navy-700 text-lg font-bold">{item.title}</p>
+                        <p className="mt-1 text-sm font-medium text-gray-600 md:mt-2">
+                          By {item.fontGenerator}
+                        </p>
+                      </div>
+                    </div>
+                    {/* <div className="flex items-center justify-between md:items-center lg:justify-between ">
                     <div className="flex">
                       <Rating>
                         <Rating.Star />
@@ -94,10 +94,10 @@ const Board = () => {
                       </Rating>
                     </div>
                   </div> */}
-                </div>
-              </Link>
-            </div>
-          ))}
+                  </div>
+                </Link>
+              </div>
+            ))}
         </div>
       </div>
     </section>
